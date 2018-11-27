@@ -13,21 +13,19 @@
  */
 CModule::IncludeModule('iblock');
 $arSelect = Array("NAME", "ID", "PROPERTY_IMAGE");
-$arFilter = Array("IBLOCK_ID"=>15, "ACTIVE"=>"Y");
+$arFilter = Array("IBLOCK_ID" => 15, "ACTIVE" => "Y");
 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
-while($ob = $res->GetNextElement())
-{
+while ($ob = $res->GetNextElement()) {
     $arFields = $ob->GetFields();
-    if (!empty($arFields['PROPERTY_IMAGE_VALUE'])){
+    if (!empty($arFields['PROPERTY_IMAGE_VALUE'])) {
         $arEventField = array(
-            "EMAIL_TO" => $_POST['email'],// - здесь email - это <input type="email" name="email" placeholder="E-mail" value="" required>
-            "TEXT" => $_POST['textarea'],// - здесь textarea - это <input type="text" name="textarea" placeholder="Текст сообщения" value="">
+            "EMAIL_TO" => $_POST['email'], // - здесь email - это <input type="email" name="email" placeholder="E-mail" value="" required>
+            "TEXT" => $_POST['textarea'], // - здесь textarea - это <input type="text" name="textarea" placeholder="Текст сообщения" value="">
         );
-        $image=CFile::GetPath($arFields['PROPERTY_IMAGE_VALUE']);
-        CEvent::Send("IMAGE_FEEDBACK", 's1', $arEventField,'Y',8,array(CFile::GetPath($arFields['PROPERTY_IMAGE_VALUE'])));
+        $image = CFile::GetPath($arFields['PROPERTY_IMAGE_VALUE']);
+        CEvent::Send("IMAGE_FEEDBACK", 's1', $arEventField, 'Y', 8, array($image));
+        /**
+         * Поля EMAIL_TO и TEXT - есть в моем почтовом шаблоне под номером 8 и с названием IMAGE_FEEDBACK
+         */
     }
 }
-
-/**
- * Поля EMAIL_TO и TEXT - есть в моем почтовом шаблоне под номером 8 и с названием IMAGE_FEEDBACK
- */

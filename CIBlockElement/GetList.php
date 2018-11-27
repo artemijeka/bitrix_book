@@ -28,7 +28,7 @@ $arGroup = array(
  * Параметры для постраничной навигации и ограничения количества выводимых элементов.
  */
 $arNav = array(
-    "nPageSize" => 10
+    "nPageSize" => 10 //                                                                           НЕ ПОЛУЧИЛОСЬ ПОКА ЧТО
 );
 
 $arSelect = array(
@@ -57,5 +57,10 @@ while ($ob = $res->GetNextElement()) {
     echo $arFields['CNT'];
     echo '</pre>';
     var_dump($arFields);
+
+    // #2 вариант -                                                                               НЕ ПОЛУЧИЛОСЬ ПОКА ЧТО
+    // $prop = $arProp = $ob->GetProperties();
+    // var_dump($prop);
+    // echo $prop['ROPERTY_19_2001'];
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

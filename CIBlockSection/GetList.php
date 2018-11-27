@@ -117,8 +117,10 @@ while ($arRes = $obRes->GetNext()) {
     var_dump($arRes);
     echo '<br>' . $arRes['NAME'] . '<br>';
     echo $arRes['SECTION_PAGE_URL'] . '<br>';
-    $picture1 = '<img width="100" src=' . CFile::GetPath($arRes["DETAIL_PICTURE"]) . '><br>';
-    $picture2 = '<img width="100" src=' . CFile::GetPath($arRes["PICTURE"]) . '><br>';
-    echo !empty($arRes["DETAIL_PICTURE"]) ? $picture1 : $picture2;
+    echo '<img width="100" src="' . CFile::GetPath(
+            !empty($arRes["DETAIL_PICTURE"]) ? $arRes["DETAIL_PICTURE"] : $arRes["PICTURE"]
+        ) . '"><br>';
+//    $picture2 = '<img width="100" src=' . CFile::GetPath($arRes["PICTURE"]) . '><br>';
+//    echo !empty($arRes["DETAIL_PICTURE"]) ? $picture1 : $picture2;
 }
 /**********************************************************************************************************************/
